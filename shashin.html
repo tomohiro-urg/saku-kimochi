@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>写真で よむ | サクのきもち</title>
+  <meta name="description" content="サクの顔を撮ると、今の気持ちを名古屋弁で話してくれる家族用のアプリです。">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#fdf6e9">
+  <meta name="color-scheme" content="light">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="サクのきもち">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="shashin.css">
+</head>
+<body>
+
+  <main id="screen-pass" class="screen screen-pass" hidden>
+    <h1 class="title">写真で よむ</h1>
+    <form id="pass-form" class="pass-form">
+      <label class="pass-label" for="pass-input">合言葉を入れてちょう</label>
+      <input id="pass-input" class="pass-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done" required>
+      <button id="pass-submit" class="btn btn-primary" type="submit">はじめる</button>
+      <p id="pass-message" class="message" role="alert"></p>
+      <button id="pass-skip" class="btn btn-secondary" type="button">合言葉なしで あそぶ(AIは使わん)</button>
+    </form>
+    <p class="note"><span class="phrase">合言葉は最初の1回だけ入れれば、</span><span class="phrase">次からは聞かれません。</span></p>
+    <a class="back-link" href="index.html">はじめの 画面に もどる</a>
+  </main>
+
+  <main id="screen-home" class="screen screen-home" hidden>
+    <h1 class="title">写真で よむ</h1>
+    <div class="home-actions">
+      <button id="btn-camera" class="btn btn-primary btn-camera" type="button">サクを撮る</button>
+      <button id="btn-album" class="btn btn-secondary" type="button">アルバムから選ぶ</button>
+      <p id="home-message" class="message" role="alert"></p>
+    </div>
+    <div class="home-foot">
+      <p class="note"><span class="phrase">写真はAIが読むためGoogleに送られるで、</span><span class="phrase">人の顔や住所が写らんようにしてちょう</span></p>
+      <a class="back-link" href="index.html">はじめの 画面に もどる</a>
+    </div>
+    <input id="input-camera" class="file-input" type="file" accept="image/*" capture="environment" tabindex="-1" aria-hidden="true">
+    <input id="input-album" class="file-input" type="file" accept="image/*" tabindex="-1" aria-hidden="true">
+  </main>
+
+  <main id="screen-wait" class="screen screen-wait" hidden>
+    <img id="wait-photo" class="wait-photo" alt="撮った写真">
+    <p id="wait-text" class="wait-text" role="status">サクの気持ちを読んどる…</p>
+    <div class="wait-bar" aria-hidden="true"><div class="wait-bar-fill"></div></div>
+  </main>
+
+  <main id="screen-result" class="screen screen-result" hidden>
+    <img id="result-photo" class="result-photo" alt="">
+    <div class="result-info">
+      <p id="result-offline" class="offline-note" hidden>今日はAIがお休み</p>
+      <p id="result-message" class="message" role="status"></p>
+    </div>
+    <div class="result-actions">
+      <button id="btn-again" class="btn btn-secondary btn-result" type="button">もう一回</button>
+      <button id="btn-save" class="btn btn-secondary btn-result" type="button">保存する</button>
+      <button id="btn-share" class="btn btn-primary btn-result btn-share" type="button">LINEで送る</button>
+    </div>
+    <p class="share-hint">次の画面でLINEを選んでちょう</p>
+  </main>
+
+  <div id="save-panel" class="save-panel" role="dialog" aria-modal="true" aria-labelledby="save-panel-text" hidden>
+    <p id="save-panel-text" class="save-panel-text"><span class="phrase">写真を指で長押しして、</span><span class="phrase">「写真に追加」を押してちょう</span></p>
+    <img id="save-panel-photo" class="save-panel-photo" alt="サクの写真とセリフ">
+    <button id="btn-save-close" class="btn btn-primary" type="button">閉じる</button>
+  </div>
+
+  <script src="shashin-lines.js"></script>
+  <script src="shashin.js"></script>
+</body>
+</html>

@@ -1,0 +1,304 @@
+/* ピンチで 大きく できるように しつつ、ボタンの れんだで かってに ズームしない */
+button { touch-action: manipulation; }
+
+body {
+  line-height: 1.7;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+.wrap {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 18px 16px 40px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+h1 {
+  font-size: 26px;
+  margin: 6px 0 2px;
+  color: var(--brand);
+}
+
+.sub {
+  font-size: 15px;
+  color: var(--text-sub);
+  margin: 0;
+}
+
+/* ---- わんこ ---- */
+.dog {
+  font-size: 76px;
+  line-height: 1;
+  text-align: center;
+  margin: 6px 0 2px;
+  display: block;
+}
+.dog.bounce { animation: bounce 1.6s ease-in-out infinite; }
+.dog.wiggle { animation: wiggle .7s ease-in-out infinite; }
+.dog.spin { animation: spinbob 1.1s ease-in-out infinite; }
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-8deg) scale(1.02); }
+  50% { transform: rotate(8deg) scale(1.08); }
+}
+@keyframes spinbob {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-14px) scale(1.1); }
+}
+
+/* ---- カード ---- */
+.card {
+  background: var(--surface);
+  border: 2px solid var(--tan);
+  border-radius: 14px;
+  padding: 18px 16px 22px;
+}
+
+h2 {
+  font-size: 20px;
+  margin: 0 0 12px;
+  text-align: center;
+  color: var(--brand);
+}
+
+/* ---- 場面ボタン ---- */
+.scenes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.scene-btn {
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 1.35;
+  font-weight: 700;
+  color: var(--text);
+  background: var(--cream-deep);
+  border: 2px solid var(--tan);
+  border-radius: 14px;
+  padding: 14px 8px;
+  min-height: 74px;
+  cursor: pointer;
+  transition: transform .08s ease, background .15s ease, border-color .15s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  text-align: center;
+}
+.scene-btn .emo { font-size: 24px; line-height: 1; }
+/* 豚くんの 絵は よこながなので、上下を すこし はみださせて 絵文字と おなじ たかさに そろえる */
+.scene-btn .emo-img { width: 62px; height: 44px; object-fit: contain; margin: -13px 0 -7px; }
+.who-bar .emo-img { width: 40px; height: 28px; vertical-align: middle; object-fit: contain; }
+.scene-btn:active { transform: scale(.96); }
+.scene-btn[aria-pressed="true"] {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #ffffff;
+}
+
+/* ---- だれが つかうか ---- */
+.who-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--brand);
+}
+.who-change {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  background: var(--cream-deep);
+  border: 2px solid var(--tan);
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+.who-change:active { transform: scale(.96); }
+
+/* ---- 大きいボタン ---- */
+.big-btn {
+  font-family: inherit;
+  display: block;
+  width: 100%;
+  min-height: 60px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #ffffff;
+  background: var(--brand);
+  border: 2px solid var(--brand);
+  border-radius: 14px;
+  padding: 14px 12px;
+  margin-top: 18px;
+  cursor: pointer;
+}
+.big-btn:active { background: var(--brand-pressed); }
+.big-btn.sub-btn {
+  background: var(--surface);
+  color: var(--brand);
+}
+.big-btn.sub-btn:active { background: var(--cream-deep); }
+.big-btn:disabled { opacity: .5; }
+
+/* ---- 画面きりかえ ---- */
+.screen { display: none; }
+.screen.active { display: block; animation: fadein .3s ease; }
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+.scene-tag {
+  display: inline-block;
+  background: var(--cream-deep);
+  border: 2px solid var(--tan);
+  border-radius: 999px;
+  padding: 5px 16px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--brand);
+  margin-bottom: 10px;
+}
+.center { text-align: center; }
+
+/* ---- 音のメーター ---- */
+.meter {
+  height: 26px;
+  background: var(--cream-deep);
+  border: 2px solid var(--tan);
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 16px 0 8px;
+}
+.meter-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--brand);
+  transition: width .08s linear;
+}
+.count {
+  font-size: 44px;
+  font-weight: 700;
+  color: var(--brand);
+  text-align: center;
+  margin: 4px 0 0;
+  line-height: 1.2;
+}
+.hint {
+  font-size: 15px;
+  color: var(--text-sub);
+  text-align: center;
+  margin: 6px 0 0;
+}
+
+/* ---- 翻訳中 ---- */
+.dots {
+  text-align: center;
+  font-size: 34px;
+  letter-spacing: .2em;
+  color: var(--brand);
+}
+.dots span { display: inline-block; animation: dot 1.1s infinite; }
+.dots span:nth-child(2) { animation-delay: .18s; }
+.dots span:nth-child(3) { animation-delay: .36s; }
+@keyframes dot {
+  0%, 100% { transform: translateY(0); opacity: .4; }
+  40% { transform: translateY(-12px); opacity: 1; }
+}
+
+/* ---- けっか ---- */
+.balloon {
+  white-space: pre-line;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  position: relative;
+  background: var(--cream-deep);
+  border: 2px solid var(--tan);
+  border-radius: 14px;
+  padding: 22px 18px;
+  font-size: 23px;
+  font-weight: 700;
+  line-height: 1.85;
+  color: var(--text);
+  margin-top: 16px;
+}
+.balloon::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 14px solid transparent;
+  border-bottom-color: var(--tan);
+  border-top: 0;
+}
+.balloon::after {
+  content: "";
+  position: absolute;
+  top: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 12px solid transparent;
+  border-bottom-color: var(--cream-deep);
+  border-top: 0;
+}
+.mood {
+  text-align: center;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--brand);
+  margin: 14px 0 0;
+}
+.mood .badge {
+  display: inline-block;
+  background: var(--pink);
+  color: #5f2c1d;
+  border-radius: 999px;
+  padding: 4px 18px;
+  margin-left: 6px;
+}
+
+.note {
+  font-size: 15px;
+  color: var(--text-sub);
+  text-align: center;
+  margin-top: 22px;
+  line-height: 1.6;
+  word-break: keep-all;
+}
+
+.error-box {
+  background: #fff2ec;
+  border: 2px solid var(--pink);
+  border-radius: 14px;
+  padding: 16px;
+  font-size: 16px;
+  margin-top: 14px;
+}
+
+@media (max-width: 360px) {
+  body { font-size: 17px; }
+  .scene-btn { font-size: 15px; min-height: 70px; }
+  .balloon { font-size: 21px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dog.bounce, .dog.wiggle, .dog.spin, .dots span, .screen.active { animation: none; }
+}

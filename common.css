@@ -1,0 +1,50 @@
+/* 3つのページで共通の色と文字 */
+:root {
+  color-scheme: light;
+  --bg: #fdf6e9;
+  --surface: #fffdf8;
+  --cream-deep: #f6e7cf;
+  --tan: #e3c9a5;
+  --pink: #f0b6a8;
+  --text: #2e2118;
+  --text-sub: #5c4a3c;
+  --brand: #6b3e1e;
+  --brand-pressed: #4f2c13;
+  --error: #a32015;
+  --font: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Noto Sans CJK JP", "Yu Gothic", Meiryo, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+[hidden] { display: none !important; }
+
+html, body { margin: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 18px;
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* 入口のページへ戻るリンク */
+.back-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  color: var(--brand);
+  font-size: 17px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.back-link:focus-visible {
+  outline: 3px solid var(--text);
+  outline-offset: 2px;
+}

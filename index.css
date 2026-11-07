@@ -1,0 +1,114 @@
+/* 入口のページ */
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  width: 100%;
+  max-width: 460px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0 auto;
+  padding:
+    calc(20px + env(safe-area-inset-top))
+    calc(20px + env(safe-area-inset-right))
+    calc(20px + env(safe-area-inset-bottom))
+    calc(20px + env(safe-area-inset-left));
+}
+
+.menu-icon {
+  display: block;
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+}
+
+.menu-title {
+  margin: 0;
+  color: var(--brand);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.menu-lead {
+  margin: 0 0 6px;
+  color: var(--text-sub);
+  font-size: 18px;
+  text-align: center;
+}
+
+.menu-btn {
+  display: block;
+  width: 100%;
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: var(--brand);
+  color: #ffffff;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+}
+
+.menu-btn:active { background: var(--brand-pressed); }
+
+.menu-btn:focus-visible {
+  outline: 3px solid var(--text);
+  outline-offset: 2px;
+}
+
+.menu-btn-name {
+  display: block;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.menu-btn-desc {
+  display: block;
+  margin-top: 4px;
+  font-size: 16px;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+/* アプリを ひらいた ときの オープニング(3びょう) */
+.splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 24px;
+  background: var(--bg);
+  transition: opacity .5s ease;
+}
+
+.splash.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.splash img {
+  max-width: 78vw;
+  max-height: 60vh;
+  border: 5px solid var(--tan);
+  border-radius: 26px;
+  object-fit: contain;
+}
+
+.splash-title {
+  margin: 0;
+  color: var(--brand);
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+}

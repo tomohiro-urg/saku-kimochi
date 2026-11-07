@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>声で きく | サクのきもち</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="トイプードルのサクのなきごえを、にほんごにほんやくするあそびです。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#fdf6e9">
+<meta name="color-scheme" content="light">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="サクのきもち">
+<meta name="format-detection" content="telephone=no">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+<link rel="stylesheet" href="common.css">
+<link rel="stylesheet" href="koe.css">
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <span class="dog bounce" id="headDog" aria-hidden="true">🐩</span>
+    <h1>声で きく</h1>
+    <p class="sub">トイプードルの サク せんよう</p>
+  </header>
+
+  <!-- だれが つかうかを えらぶ -->
+  <section class="screen active" id="screenWho">
+    <div class="card">
+      <h2>だれが あそぶ？</h2>
+      <div class="scenes" id="whoList" role="group" aria-label="つかう人をえらぶ"></div>
+    </div>
+    <a class="back-link" href="index.html">はじめの 画面に もどる</a>
+  </section>
+
+  <!-- ① 場面をえらぶ -->
+  <section class="screen" id="screenSelect">
+    <div class="card">
+      <div class="who-bar">
+        <span id="whoLabel">-</span>
+        <button type="button" class="who-change" id="whoChangeBtn">かえる</button>
+      </div>
+      <h2>① いまは どんなとき？</h2>
+      <div class="scenes" id="sceneList" role="group" aria-label="場面をえらぶ"></div>
+      <button class="big-btn" id="toRecordBtn">サクの声を きく 🎤</button>
+    </div>
+    <p class="note">
+      ろくおんした 音は、この スマホの なかだけで しらべます。<br>
+      どこにも ほぞんしたり、おくったり しません。
+    </p>
+    <a class="back-link" href="index.html">はじめの 画面に もどる</a>
+  </section>
+
+  <!-- ② ろくおん -->
+  <section class="screen" id="screenRecord">
+    <div class="card center">
+      <span class="scene-tag" id="recSceneTag">-</span>
+      <h2>② サクに はなしかけてもらおう</h2>
+      <span class="dog wiggle" aria-hidden="true">🐶</span>
+      <p class="count" id="countText">10</p>
+      <div class="meter"><div class="meter-bar" id="meterBar"></div></div>
+      <p class="hint" id="recHint">マイクに ちかづけて…</p>
+      <div id="errorArea"></div>
+      <button class="big-btn" id="stopBtn">これで おわり ✋</button>
+      <button class="big-btn sub-btn" id="cancelBtn">やめる</button>
+    </div>
+  </section>
+
+  <!-- ③ ほんやく中 -->
+  <section class="screen" id="screenLoading">
+    <div class="card center">
+      <h2>③ ほんやく中…</h2>
+      <span class="dog spin" aria-hidden="true">🐩</span>
+      <p class="dots" aria-hidden="true"><span>●</span><span>●</span><span>●</span></p>
+      <p class="hint">サクの きもちを よみとっています</p>
+    </div>
+  </section>
+
+  <!-- ④ けっか -->
+  <section class="screen" id="screenResult">
+    <div class="card center">
+      <span class="scene-tag" id="resSceneTag">-</span>
+      <h2>④ サクは こう いってるよ！</h2>
+      <span class="dog bounce" id="resultDog" aria-hidden="true">🐕</span>
+      <p class="balloon" id="resultText" aria-live="polite"></p>
+      <p class="mood" id="moodText"></p>
+      <button class="big-btn" id="againBtn">もう一回 🔁</button>
+    </div>
+  </section>
+
+</div>
+
+<script src="koe.js"></script>
+</body>
+</html>

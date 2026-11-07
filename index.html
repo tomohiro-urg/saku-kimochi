@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>サクのきもち</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="トイプードルのサクの気持ちを、なきごえや写真から名古屋弁で教えてくれる家族用のあそびアプリです。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#fdf6e9">
+<meta name="color-scheme" content="light">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="サクのきもち">
+<meta name="format-detection" content="telephone=no">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+<link rel="preload" as="image" href="saku.jpg">
+<link rel="stylesheet" href="common.css">
+<link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+<!-- アプリを ひらいた ときに 3びょうだけ でる サクちゃんの しゃしん -->
+<div class="splash" id="splash">
+  <img src="saku.jpg" alt="サク">
+  <p class="splash-title">サクのきもち</p>
+</div>
+<script>
+(function(){
+  "use strict";
+  /* 声や写真の ページから もどってきた ときは、もう 出さない */
+  var splash = document.getElementById("splash");
+  var seen = false;
+  try{
+    seen = sessionStorage.getItem("saku-splash-seen") === "1";
+    sessionStorage.setItem("saku-splash-seen", "1");
+  }catch(e){}
+  if(seen){
+    splash.style.display = "none";
+    splash.setAttribute("aria-hidden", "true");
+    return;
+  }
+  setTimeout(function(){
+    splash.classList.add("hide");
+    setTimeout(function(){
+      splash.style.display = "none";
+      splash.setAttribute("aria-hidden", "true");
+    }, 520);
+  }, 3000);
+})();
+</script>
+
+<main class="menu">
+  <img class="menu-icon" src="icons/icon-512.png" alt="" width="132" height="132">
+  <h1 class="menu-title">サクのきもち</h1>
+  <p class="menu-lead">どっちで しらべる？</p>
+  <a class="menu-btn" href="koe.html">
+    <span class="menu-btn-name">声で きく</span>
+    <span class="menu-btn-desc">なきごえを ほんやくするよ。<br>音は スマホの 中だけで しらべます</span>
+  </a>
+  <a class="menu-btn" href="shashin.html">
+    <span class="menu-btn-name">写真で よむ</span>
+    <span class="menu-btn-desc">顔の ようすを AIが よむよ。<br>写真は Googleに おくられます</span>
+  </a>
+</main>
+
+</body>
+</html>
